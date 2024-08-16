@@ -1,7 +1,7 @@
 extends Node2D
 
-const f_clean: FontFile = preload("res://assets/cp437_20x20_2.png")
-const f: FontFile = preload("res://assets/cp437_20x20_3.png")
+const f_clean = preload("res://assets/cp437_20x20_2.png")
+const f = preload("res://assets/cp437_20x20_3.png")
 
 var glyph_array = []
 var replacing_array = []
