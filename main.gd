@@ -53,3 +53,13 @@ func _on_check_button_pressed() -> void:
 			var reset_rect: Rect2 = f_clean.get_glyph_uv_rect(0, Vector2i(20, 0), replacing_array[i])
 			f.set_glyph_uv_rect(0, Vector2i(20, 0), replacing_array[i], reset_rect)
 	$VBoxContainer/Label2.add_theme_font_override("font", f)
+
+
+func _on_final_check_button_pressed() -> void:
+	if $VBoxContainer/FinalLineEdit.text == $VBoxContainer/FinalLabel.text:
+		$Popup.show()
+		$Popup/VBoxContainer/Label2.text = "the word was %s" % $VBoxContainer/FinalLabel.text
+
+
+func _on_button_pressed() -> void:
+	get_tree().reload_current_scene()

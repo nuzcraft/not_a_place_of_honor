@@ -8,13 +8,24 @@
 [node name="Main" type="Node2D"]
 script = ExtResource("1_i3mbq")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1152.0
+offset_bottom = 648.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
 [node name="Cp43720x20" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(970, 230)
 texture = ExtResource("3_lbwso")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 860.0
+offset_bottom = 330.0
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
@@ -28,6 +39,7 @@ text = "the quick brown fox jumps over the lazy dog"
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 columns = 6
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/GridContainer"]
@@ -158,10 +170,359 @@ placeholder_text = "?"
 alignment = 1
 max_length = 1
 
+[node name="VBoxContainer9" type="VBoxContainer" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/GridContainer/VBoxContainer9"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_oj5su")
+text = "i"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/GridContainer/VBoxContainer9"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_5im7g")
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer10" type="VBoxContainer" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/GridContainer/VBoxContainer10"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_oj5su")
+text = "j"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/GridContainer/VBoxContainer10"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_5im7g")
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer11" type="VBoxContainer" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/GridContainer/VBoxContainer11"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_oj5su")
+text = "k"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/GridContainer/VBoxContainer11"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_5im7g")
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer12" type="VBoxContainer" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/GridContainer/VBoxContainer12"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_oj5su")
+text = "l"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/GridContainer/VBoxContainer12"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_5im7g")
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer13" type="VBoxContainer" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/GridContainer/VBoxContainer13"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_oj5su")
+text = "m"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/GridContainer/VBoxContainer13"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_5im7g")
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer14" type="VBoxContainer" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/GridContainer/VBoxContainer14"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_oj5su")
+text = "n"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/GridContainer/VBoxContainer14"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_5im7g")
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer15" type="VBoxContainer" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/GridContainer/VBoxContainer15"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_oj5su")
+text = "o"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/GridContainer/VBoxContainer15"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_5im7g")
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer16" type="VBoxContainer" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/GridContainer/VBoxContainer16"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_oj5su")
+text = "p"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/GridContainer/VBoxContainer16"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_5im7g")
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer17" type="VBoxContainer" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/GridContainer/VBoxContainer17"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_oj5su")
+text = "q"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/GridContainer/VBoxContainer17"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_5im7g")
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer18" type="VBoxContainer" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/GridContainer/VBoxContainer18"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_oj5su")
+text = "r"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/GridContainer/VBoxContainer18"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_5im7g")
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer19" type="VBoxContainer" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/GridContainer/VBoxContainer19"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_oj5su")
+text = "s"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/GridContainer/VBoxContainer19"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_5im7g")
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer20" type="VBoxContainer" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/GridContainer/VBoxContainer20"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_oj5su")
+text = "t"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/GridContainer/VBoxContainer20"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_5im7g")
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer21" type="VBoxContainer" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/GridContainer/VBoxContainer21"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_oj5su")
+text = "u"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/GridContainer/VBoxContainer21"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_5im7g")
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer22" type="VBoxContainer" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/GridContainer/VBoxContainer22"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_oj5su")
+text = "v"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/GridContainer/VBoxContainer22"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_5im7g")
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer23" type="VBoxContainer" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/GridContainer/VBoxContainer23"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_oj5su")
+text = "w"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/GridContainer/VBoxContainer23"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_5im7g")
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer24" type="VBoxContainer" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/GridContainer/VBoxContainer24"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_oj5su")
+text = "x"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/GridContainer/VBoxContainer24"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_5im7g")
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer25" type="VBoxContainer" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/GridContainer/VBoxContainer25"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_oj5su")
+text = "y"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/GridContainer/VBoxContainer25"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_5im7g")
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer26" type="VBoxContainer" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/GridContainer/VBoxContainer26"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_oj5su")
+text = "z"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/GridContainer/VBoxContainer26"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_5im7g")
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
 [node name="CheckButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("4_5im7g")
 text = "check"
 
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="FinalQuestion" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("4_5im7g")
+text = "what is the password?"
+
+[node name="FinalLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("5_oj5su")
+text = "honor"
+
+[node name="FinalLineEdit" type="LineEdit" parent="VBoxContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("4_5im7g")
+placeholder_text = "?????"
+alignment = 1
+max_length = 5
+
+[node name="FinalCheckButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("4_5im7g")
+text = "check"
+
+[node name="Popup" type="Popup" parent="."]
+initial_position = 2
+size = Vector2i(360, 100)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Popup"]
+offset_right = 40.0
+offset_bottom = 40.0
+alignment = 1
+
+[node name="Label" type="Label" parent="Popup/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_5im7g")
+text = "you won!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Popup/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_5im7g")
+text = "the word was jones"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Popup/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_5im7g")
+text = "restart"
+
 [connection signal="pressed" from="VBoxContainer/CheckButton" to="." method="_on_check_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/FinalCheckButton" to="." method="_on_final_check_button_pressed"]
+[connection signal="pressed" from="Popup/VBoxContainer/Button" to="." method="_on_button_pressed"]
