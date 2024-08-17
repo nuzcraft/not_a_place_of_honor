@@ -1,0 +1,422 @@
+[gd_scene load_steps=4 format=3 uid="uid://ch0dqsn37i4l3"]
+
+[ext_resource type="Theme" uid="uid://bv3cejaf47msf" path="res://monochrome_theme.tres" id="1_4311p"]
+[ext_resource type="Script" path="res://scenes/decipher_window.gd" id="2_4su8k"]
+[ext_resource type="FontFile" uid="uid://6oaa5h668nc7" path="res://assets/cp437_20x20_2.png" id="3_muqyb"]
+
+[node name="DecipherWindow" type="Window"]
+title = "Decipher"
+position = Vector2i(45, 36)
+size = Vector2i(372, 432)
+unresizable = true
+keep_title_visible = true
+theme = ExtResource("1_4311p")
+script = ExtResource("2_4su8k")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_4311p")
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = 4.0
+offset_right = 368.0
+offset_bottom = 388.0
+
+[node name="AvailableLabel" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_muqyb")
+text = "lowercase a-z"
+horizontal_alignment = 1
+
+[node name="DecipherGrid" type="GridContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+columns = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/VBoxContainer/DecipherGrid"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer"]
+layout_mode = 2
+text = "a"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control/VBoxContainer/DecipherGrid"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer2"]
+layout_mode = 2
+text = "b"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer2"]
+layout_mode = 2
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Control/VBoxContainer/DecipherGrid"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer3"]
+layout_mode = 2
+text = "c"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer3"]
+layout_mode = 2
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="Control/VBoxContainer/DecipherGrid"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer4"]
+layout_mode = 2
+text = "d"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer4"]
+layout_mode = 2
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer5" type="VBoxContainer" parent="Control/VBoxContainer/DecipherGrid"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer5"]
+layout_mode = 2
+text = "e"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer5"]
+layout_mode = 2
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer6" type="VBoxContainer" parent="Control/VBoxContainer/DecipherGrid"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer6"]
+layout_mode = 2
+text = "f"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer6"]
+layout_mode = 2
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer7" type="VBoxContainer" parent="Control/VBoxContainer/DecipherGrid"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer7"]
+layout_mode = 2
+text = "g"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer7"]
+layout_mode = 2
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer8" type="VBoxContainer" parent="Control/VBoxContainer/DecipherGrid"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer8"]
+layout_mode = 2
+text = "h"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer8"]
+layout_mode = 2
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer9" type="VBoxContainer" parent="Control/VBoxContainer/DecipherGrid"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer9"]
+layout_mode = 2
+text = "i"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer9"]
+layout_mode = 2
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer10" type="VBoxContainer" parent="Control/VBoxContainer/DecipherGrid"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer10"]
+layout_mode = 2
+text = "j"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer10"]
+layout_mode = 2
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer11" type="VBoxContainer" parent="Control/VBoxContainer/DecipherGrid"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer11"]
+layout_mode = 2
+text = "k"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer11"]
+layout_mode = 2
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer12" type="VBoxContainer" parent="Control/VBoxContainer/DecipherGrid"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer12"]
+layout_mode = 2
+text = "l"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer12"]
+layout_mode = 2
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer13" type="VBoxContainer" parent="Control/VBoxContainer/DecipherGrid"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer13"]
+layout_mode = 2
+text = "m"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer13"]
+layout_mode = 2
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer14" type="VBoxContainer" parent="Control/VBoxContainer/DecipherGrid"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer14"]
+layout_mode = 2
+text = "n"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer14"]
+layout_mode = 2
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer15" type="VBoxContainer" parent="Control/VBoxContainer/DecipherGrid"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer15"]
+layout_mode = 2
+text = "o"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer15"]
+layout_mode = 2
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer16" type="VBoxContainer" parent="Control/VBoxContainer/DecipherGrid"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer16"]
+layout_mode = 2
+text = "p"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer16"]
+layout_mode = 2
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer17" type="VBoxContainer" parent="Control/VBoxContainer/DecipherGrid"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer17"]
+layout_mode = 2
+text = "q"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer17"]
+layout_mode = 2
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer18" type="VBoxContainer" parent="Control/VBoxContainer/DecipherGrid"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer18"]
+layout_mode = 2
+text = "r"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer18"]
+layout_mode = 2
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer19" type="VBoxContainer" parent="Control/VBoxContainer/DecipherGrid"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer19"]
+layout_mode = 2
+text = "s"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer19"]
+layout_mode = 2
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer20" type="VBoxContainer" parent="Control/VBoxContainer/DecipherGrid"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer20"]
+layout_mode = 2
+text = "t"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer20"]
+layout_mode = 2
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer21" type="VBoxContainer" parent="Control/VBoxContainer/DecipherGrid"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer21"]
+layout_mode = 2
+text = "u"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer21"]
+layout_mode = 2
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer22" type="VBoxContainer" parent="Control/VBoxContainer/DecipherGrid"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer22"]
+layout_mode = 2
+text = "v"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer22"]
+layout_mode = 2
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer23" type="VBoxContainer" parent="Control/VBoxContainer/DecipherGrid"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer23"]
+layout_mode = 2
+text = "w"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer23"]
+layout_mode = 2
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer24" type="VBoxContainer" parent="Control/VBoxContainer/DecipherGrid"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer24"]
+layout_mode = 2
+text = "x"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer24"]
+layout_mode = 2
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer25" type="VBoxContainer" parent="Control/VBoxContainer/DecipherGrid"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer25"]
+layout_mode = 2
+text = "y"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer25"]
+layout_mode = 2
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="VBoxContainer26" type="VBoxContainer" parent="Control/VBoxContainer/DecipherGrid"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer26"]
+layout_mode = 2
+text = "z"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Control/VBoxContainer/DecipherGrid/VBoxContainer26"]
+layout_mode = 2
+placeholder_text = "?"
+alignment = 1
+max_length = 1
+
+[node name="HSeparator" type="HSeparator" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="CheckButton" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "check"
+
+[connection signal="pressed" from="Control/VBoxContainer/CheckButton" to="." method="_on_check_button_pressed"]

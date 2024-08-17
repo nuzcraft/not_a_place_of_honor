@@ -1,0 +1,35 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://bv3cejaf47msf"]
+
+[ext_resource type="FontFile" uid="uid://t8gejpctdf8a" path="res://assets/cp437_20x20_3.png" id="1_htf16"]
+[ext_resource type="FontFile" uid="uid://6oaa5h668nc7" path="res://assets/cp437_20x20_2.png" id="2_siehk"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_hlssd"]
+thickness = 4
+
+[sub_resource type="ImageTexture" id="ImageTexture_wu8g2"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_jlucc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t1avt"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 4.0
+expand_margin_top = 32.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[resource]
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/fonts/font = ExtResource("2_siehk")
+HSeparator/styles/separator = SubResource("StyleBoxLine_hlssd")
+Label/colors/font_color = Color(0.388235, 0.145098, 0.054902, 1)
+Label/fonts/font = ExtResource("1_htf16")
+LineEdit/colors/font_color = Color(0, 0, 0, 1)
+LineEdit/fonts/font = ExtResource("2_siehk")
+Window/fonts/title_font = ExtResource("2_siehk")
+Window/icons/close = SubResource("ImageTexture_wu8g2")
+Window/icons/close_pressed = SubResource("ImageTexture_jlucc")
+Window/styles/embedded_border = SubResource("StyleBoxFlat_t1avt")
