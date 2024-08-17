@@ -2,23 +2,23 @@
 
 [ext_resource type="Theme" uid="uid://bv3cejaf47msf" path="res://monochrome_theme.tres" id="1_ggtrn"]
 [ext_resource type="Script" path="res://scenes/image_window.gd" id="2_3qq4w"]
-[ext_resource type="Texture2D" uid="uid://b0t8rttqpuxdg" path="res://assets/spike_field.webp" id="2_kid4n"]
 [ext_resource type="Shader" path="res://diff_of_gauss.gdshader" id="2_tva8f"]
 [ext_resource type="Theme" uid="uid://qq8er6lr5dhi" path="res://unscramble_theme.tres" id="3_jawt2"]
+[ext_resource type="Texture2D" uid="uid://bgla0k3gjoywi" path="res://assets/postit.jpg" id="4_c00ti"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3ymuq"]
 shader = ExtResource("2_tva8f")
 shader_parameter/_kernel = 5
 shader_parameter/_sigma = 2.0
-shader_parameter/_k = 0.5
-shader_parameter/_k2 = 0.3
+shader_parameter/_k = 1.6
+shader_parameter/_k2 = 1.6
 shader_parameter/_tau = 1.0
 shader_parameter/_thresholding = true
-shader_parameter/_threshold = 0.01
+shader_parameter/_threshold = 0.005
 
 [node name="ImageWindow" type="Window"]
 title = "Images"
-position = Vector2i(420, 55)
+position = Vector2i(420, 36)
 size = Vector2i(700, 500)
 theme = ExtResource("1_ggtrn")
 script = ExtResource("2_3qq4w")
@@ -52,13 +52,13 @@ alignment = 1
 material = SubResource("ShaderMaterial_3ymuq")
 clip_contents = true
 layout_mode = 2
-texture = ExtResource("2_kid4n")
+texture = ExtResource("4_c00ti")
 expand_mode = 5
 
 [node name="Label" type="Label" parent="Control/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_jawt2")
-text = "the spike fields of yore"
+text = "scuba diving a garuga beach"
 horizontal_alignment = 1
 
 [node name="NextButton" type="Button" parent="Control"]

@@ -42,7 +42,11 @@ func _ready() -> void:
 		#array.append(97 + i)
 		replaceable_array.append(97 + i)
 	for i in 253:
-		array.append(1 + i)
+		if num_letters < 26:
+			if i < 96 or i > 122:
+				array.append(1 + i)
+		else: 
+			array.append(1 + i)
 	
 	for i in num_letters:
 		var glyph = array.pick_random()
