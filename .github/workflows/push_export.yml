@@ -18,7 +18,7 @@ jobs:
       image: barichello/godot-ci:4.2.1
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v4
       - name: Setup
         run: |
           mkdir -v -p ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable/
@@ -28,7 +28,7 @@ jobs:
           mkdir -v -p builds/windows
           godot --headless --export-release "Windows Desktop" ./builds/windows/$EXPORT_NAME.exe
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: windows
           path: builds/windows
@@ -53,7 +53,7 @@ jobs:
       image: barichello/godot-ci:4.2.1
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v4
       - name: Setup
         run: |
           mkdir -v -p ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable/
@@ -63,7 +63,7 @@ jobs:
           mkdir -v -p builds/linux
           godot -v --headless --export-release "Linux" ./builds/linux/$EXPORT_NAME.x86_64
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: linux
           path: builds/linux
@@ -88,7 +88,7 @@ jobs:
       image: barichello/godot-ci:4.2.1
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v4
       - name: Setup
         run: |
           mkdir -v -p ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable/
@@ -98,7 +98,7 @@ jobs:
           mkdir -v -p builds/web
           godot -v --headless --export-release "Web" ./builds/web/index.html
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: web
           path: builds/web
