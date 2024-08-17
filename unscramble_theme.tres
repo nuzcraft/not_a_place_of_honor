@@ -1,0 +1,43 @@
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://qq8er6lr5dhi"]
+
+[ext_resource type="FontFile" uid="uid://6oaa5h668nc7" path="res://assets/cp437_20x20_2.png" id="1_643op"]
+[ext_resource type="FontFile" uid="uid://dsehvaj8fhkjd" path="res://assets/cp437_20x20_4.png" id="2_sb6ym"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_hlssd"]
+thickness = 4
+
+[sub_resource type="Gradient" id="Gradient_ressx"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5e0e6"]
+gradient = SubResource("Gradient_ressx")
+
+[sub_resource type="Gradient" id="Gradient_0ur4h"]
+colors = PackedColorArray(0, 0, 0, 0, 0.787356, 0.787356, 0.787356, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_tw1q1"]
+gradient = SubResource("Gradient_0ur4h")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t1avt"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 4.0
+expand_margin_top = 32.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[resource]
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/fonts/font = ExtResource("1_643op")
+HSeparator/styles/separator = SubResource("StyleBoxLine_hlssd")
+Label/colors/font_color = Color(0.184314, 0.345098, 0.552941, 1)
+Label/fonts/font = ExtResource("2_sb6ym")
+LineEdit/colors/font_color = Color(0, 0, 0, 1)
+LineEdit/fonts/font = ExtResource("1_643op")
+Window/fonts/title_font = ExtResource("1_643op")
+Window/icons/close = SubResource("GradientTexture1D_5e0e6")
+Window/icons/close_pressed = SubResource("GradientTexture1D_tw1q1")
+Window/styles/embedded_border = SubResource("StyleBoxFlat_t1avt")

@@ -1,0 +1,92 @@
+[gd_scene load_steps=7 format=3 uid="uid://d4i6w3yrl6jo8"]
+
+[ext_resource type="Theme" uid="uid://bv3cejaf47msf" path="res://monochrome_theme.tres" id="1_ggtrn"]
+[ext_resource type="Script" path="res://scenes/image_window.gd" id="2_3qq4w"]
+[ext_resource type="Texture2D" uid="uid://b0t8rttqpuxdg" path="res://assets/spike_field.webp" id="2_kid4n"]
+[ext_resource type="Shader" path="res://diff_of_gauss.gdshader" id="2_tva8f"]
+[ext_resource type="Theme" uid="uid://qq8er6lr5dhi" path="res://unscramble_theme.tres" id="3_jawt2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3ymuq"]
+shader = ExtResource("2_tva8f")
+shader_parameter/_kernel = 5
+shader_parameter/_sigma = 2.0
+shader_parameter/_k = 0.5
+shader_parameter/_k2 = 0.3
+shader_parameter/_tau = 1.0
+shader_parameter/_thresholding = true
+shader_parameter/_threshold = 0.01
+
+[node name="ImageWindow" type="Window"]
+title = "Images"
+position = Vector2i(420, 55)
+size = Vector2i(700, 500)
+theme = ExtResource("1_ggtrn")
+script = ExtResource("2_3qq4w")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Image" type="TextureRect" parent="Control/VBoxContainer"]
+material = SubResource("ShaderMaterial_3ymuq")
+clip_contents = true
+layout_mode = 2
+texture = ExtResource("2_kid4n")
+expand_mode = 5
+
+[node name="Label" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_jawt2")
+text = "the spike fields of yore"
+horizontal_alignment = 1
+
+[node name="NextButton" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 0
+grow_vertical = 0
+text = ">"
+
+[node name="PreviousButton" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = -4.0
+grow_vertical = 0
+text = "<"
+
+[connection signal="pressed" from="Control/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="Control/PreviousButton" to="." method="_on_previous_button_pressed"]

@@ -1,65 +1,64 @@
 extends Node2D
 
-const f_clean = preload("res://assets/cp437_20x20_2.png")
-const f = preload("res://assets/cp437_20x20_3.png")
+const font_clear = preload("res://assets/cp437_20x20_2.png")
+const font_sub = preload("res://assets/cp437_20x20_3.png")
+const font_sub_un = preload("res://assets/cp437_20x20_4.png")
+const UNSCRAMBLE_THEME = preload("res://unscramble_theme.tres")
 
-var glyph_array = []
-var replacing_array = []
-
-var label_array = []
-var lineedit_array = []
+const DECIPHER_WINDOW = preload("res://scenes/decipher_window.tscn")
+const PUZZLE_WINDOW = preload("res://scenes/puzzle_window.tscn")
+const IMAGE_WINDOW = preload("res://scenes/image_window.tscn")
 
 func _ready() -> void:
-	var array = []
-	var replaceable_array = []
-	for i in 26:
-		#array.append(97 + i)
-		replaceable_array.append(97 + i)
-	for i in 253:
-		array.append(1 + i)
+	# change the label fonts to black
+	override_font_color(self, Color.BLACK)
 	
-	for i in 26:
-		var glyph = array.pick_random()
-		glyph_array.append(array.pop_at(array.find(glyph)))
-		var replacing = replaceable_array.pick_random()
-		replacing_array.append(replaceable_array.pop_at(replaceable_array.find(replacing)))
-		print("%d: %s is replacing %s (%s)" % [i, glyph, replacing, char(replacing)])
-		var glyph_rect: Rect2 = f_clean.get_glyph_uv_rect(0, Vector2i(20, 0), glyph)
-		f.set_glyph_uv_rect(0, Vector2i(20, 0), replacing, glyph_rect)
-
-	print(char(glyph_array[0]))
-	print(char(replacing_array[0]))
-	#$VBoxContainer/GridContainer/VBoxContainer/Label.text = char(replacing_array[0])
-	for vbox in $VBoxContainer/GridContainer.get_children():
-		if vbox is VBoxContainer:
-			for ch in vbox.get_children():
-				if ch is Label:
-					label_array.append(ch)
-				elif ch is LineEdit:
-					lineedit_array.append(ch)
-					
+	var decipher_window = DECIPHER_WINDOW.instantiate()
+	decipher_window.num_letters = 5
+	override_font_color(decipher_window, Color.BLACK)
+	add_child(decipher_window)
+	decipher_window.check_pressed.connect(_on_decipher_window_check_pressed)
 	
-	for i in label_array.size():
-		label_array[i].text = char(replacing_array[i])
+	var puzzle_window = PUZZLE_WINDOW.instantiate()
+	puzzle_window.passcode = "cabby"
+	override_font_color(puzzle_window, Color.BLACK)
+	add_child(puzzle_window)
+	puzzle_window.correct.connect(_on_correct_solve)
+	
+	var image_window = IMAGE_WINDOW.instantiate()
+	image_window.first_texture = preload("res://assets/classroom.webp")
+	image_window.first_label = "alphabet on a classroom wall"
+	override_font_color(image_window, Color.BLACK)
+	add_child(image_window)
+	image_window.add_texture_and_label(preload("res://assets/spike_field.webp"), "spike fields of yore")
 
 func _process(delta: float) -> void:
 	pass
-
-
-func _on_check_button_pressed() -> void:
-	for i in lineedit_array.size():
-		if lineedit_array[i].text == char(replacing_array[i]):
-			lineedit_array[i].editable = false
-			var reset_rect: Rect2 = f_clean.get_glyph_uv_rect(0, Vector2i(20, 0), replacing_array[i])
-			f.set_glyph_uv_rect(0, Vector2i(20, 0), replacing_array[i], reset_rect)
-	$VBoxContainer/Label2.add_theme_font_override("font", f)
-
-
-func _on_final_check_button_pressed() -> void:
-	if $VBoxContainer/FinalLineEdit.text == $VBoxContainer/FinalLabel.text:
-		$Popup.show()
-		$Popup/VBoxContainer/Label2.text = "the word was %s" % $VBoxContainer/FinalLabel.text
-
+	
+func _on_correct_solve(pw: String) -> void:
+	$Popup.show()
+	$Popup/VBoxContainer/Label2.text = "the word was %s" % pw
 
 func _on_button_pressed() -> void:
 	get_tree().reload_current_scene()
+	
+func _on_decipher_window_check_pressed() -> void:
+	for i in get_all_children(self):
+		if i is Label and i.theme == UNSCRAMBLE_THEME:
+			i.add_theme_font_override("font", font_sub_un)
+	
+func get_all_children(node) -> Array:
+	var nodes: Array = []
+	for i in node.get_children():
+		if i.get_child_count() > 0:
+			nodes.append(i)
+			nodes.append_array(get_all_children(i))
+		else:
+			nodes.append(i)
+	return nodes
+	
+func override_font_color(node, color: Color) -> void:
+	for i in get_all_children(node):
+		if i is Label:
+			i.add_theme_color_override("font_color", color)
+	
