@@ -183,7 +183,7 @@ func start_puzzle(puzzle_number: int) -> void:
 				old_puzzle.queue_free()
 			var puzzle_window = PUZZLE_WINDOW.instantiate()
 			if old_puzzle: puzzle_window.position = old_puzzle_pos
-			puzzle_window.passcode = ["wharf", "faith", "flash", "bride", "build", "famed", "faked"].pick_random()
+			puzzle_window.passcode = ["babes", "cabin", "eagle", "facet", "hacks", "macaw", "nacho", "oaken", "rabid", "sable", "udder", "wacky", "xenon", "yacht"].pick_random()
 			override_font_color(puzzle_window, Color.BLACK)
 			add_child(puzzle_window)
 			puzzle_window.correct.connect(_on_correct_solve)
