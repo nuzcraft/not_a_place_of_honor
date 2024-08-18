@@ -12,6 +12,8 @@ const IMAGE_WINDOW = preload("res://scenes/image_window.tscn")
 const SCUBA_PHOTO_2 = preload("res://assets/scuba photo 2.jpeg")
 const SPIKE_FIELD = preload("res://assets/spike_field.webp")
 const POSTIT = preload("res://assets/postit.jpg")
+const BACON_EGGS = preload("res://assets/bacon-eggs.webp")
+const TERMINAL = preload("res://assets/terminal.png")
 
 var solves: int = 0
 
@@ -49,6 +51,7 @@ func _on_correct_solve(pw: String) -> void:
 		$Popup/VBoxContainer/Button.text = "continue"
 
 func _on_button_pressed() -> void:
+	$Popup.hide()
 	if solves < 1:
 		next_puzzle()
 	else:
@@ -75,4 +78,27 @@ func override_font_color(node, color: Color) -> void:
 			i.add_theme_color_override("font_color", color)
 	
 func next_puzzle():
-	get_tree().reload_current_scene()
+	if solves == 0:
+		get_node("DecipherWindow").queue_free()
+		var decipher_window = DECIPHER_WINDOW.instantiate()
+		decipher_window.num_letters = 5
+		override_font_color(decipher_window, Color.BLACK)
+		add_child(decipher_window)
+		decipher_window.check_pressed.connect(_on_decipher_window_check_pressed)
+		
+		get_node("PuzzleWindow").queue_free()
+		var puzzle_window = PUZZLE_WINDOW.instantiate()
+		puzzle_window.passcode = ["dance", "cadet", "cedar", "raced", "decay"].pick_random()
+		override_font_color(puzzle_window, Color.BLACK)
+		add_child(puzzle_window)
+		puzzle_window.correct.connect(_on_correct_solve)
+		
+		get_node("ImageWindow").queue_free()
+		var image_window = IMAGE_WINDOW.instantiate()
+		image_window.first_texture = BACON_EGGS
+		image_window.first_label = "uneaten bacon and eggs"
+		image_window.first_shader_params = [5, 2.0, 5.0, 1.0, 0.005]
+		override_font_color(image_window, Color.BLACK)
+		add_child(image_window)
+		image_window.add_texture_and_label(TERMINAL, "computer terminal with no power", [5, 2.0, 1.6, 1.0, 0.005])
+	solves += 1
