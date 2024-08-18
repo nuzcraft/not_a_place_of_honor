@@ -14,32 +14,18 @@ const SPIKE_FIELD = preload("res://assets/spike_field.webp")
 const POSTIT = preload("res://assets/postit.jpg")
 const BACON_EGGS = preload("res://assets/bacon-eggs.webp")
 const TERMINAL = preload("res://assets/terminal.png")
+const MOUNTAIN = preload("res://assets/mountain.webp")
+const MOUNTAIN_FROG = preload("res://assets/mountain frog.JPG")
+const CAVE = preload("res://assets/cave.jpg")
+const BLAST_DOORS_CLOSED = preload("res://assets/blast doors closed.jpg")
 
-var solves: int = 0
+var puzzle_number: int = 4
 
 func _ready() -> void:
 	# change the label fonts to black
 	override_font_color(self, Color.BLACK)
 	
-	var decipher_window = DECIPHER_WINDOW.instantiate()
-	decipher_window.num_letters = 3
-	override_font_color(decipher_window, Color.BLACK)
-	add_child(decipher_window)
-	decipher_window.check_pressed.connect(_on_decipher_window_check_pressed)
-	
-	var puzzle_window = PUZZLE_WINDOW.instantiate()
-	puzzle_window.passcode = ["bach", "back", "scab", "carb", "crab"].pick_random()
-	override_font_color(puzzle_window, Color.BLACK)
-	add_child(puzzle_window)
-	puzzle_window.correct.connect(_on_correct_solve)
-	
-	var image_window = IMAGE_WINDOW.instantiate()
-	image_window.first_texture = POSTIT
-	image_window.first_label = "the code is %s" % puzzle_window.passcode
-	image_window.first_shader_params = [5, 2.0, 1.6, 1.0, 0.005]
-	override_font_color(image_window, Color.BLACK)
-	add_child(image_window)
-	image_window.add_texture_and_label(SCUBA_PHOTO_2, "scuba diving at garuga beach", [5, 2.8, 0.3, 1.0, 0.008])
+	start_puzzle(puzzle_number)
 
 func _process(delta: float) -> void:
 	pass
@@ -47,13 +33,17 @@ func _process(delta: float) -> void:
 func _on_correct_solve(pw: String) -> void:
 	$Popup.show()
 	$Popup/VBoxContainer/Label2.text = "the word was %s" % pw
-	if solves < 1:
+	if puzzle_number < 4:
 		$Popup/VBoxContainer/Button.text = "continue"
+	else:
+		$Popup/VBoxContainer/Button.text = "restart"
+	
 
 func _on_button_pressed() -> void:
 	$Popup.hide()
-	if solves < 1:
-		next_puzzle()
+	if puzzle_number < 4:
+		puzzle_number += 1
+		start_puzzle(puzzle_number)
 	else:
 		get_tree().reload_current_scene()
 	
@@ -77,28 +67,140 @@ func override_font_color(node, color: Color) -> void:
 		if i is Label:
 			i.add_theme_color_override("font_color", color)
 	
-func next_puzzle():
-	if solves == 0:
-		get_node("DecipherWindow").queue_free()
-		var decipher_window = DECIPHER_WINDOW.instantiate()
-		decipher_window.num_letters = 5
-		override_font_color(decipher_window, Color.BLACK)
-		add_child(decipher_window)
-		decipher_window.check_pressed.connect(_on_decipher_window_check_pressed)
-		
-		get_node("PuzzleWindow").queue_free()
-		var puzzle_window = PUZZLE_WINDOW.instantiate()
-		puzzle_window.passcode = ["dance", "cadet", "cedar", "raced", "decay"].pick_random()
-		override_font_color(puzzle_window, Color.BLACK)
-		add_child(puzzle_window)
-		puzzle_window.correct.connect(_on_correct_solve)
-		
-		get_node("ImageWindow").queue_free()
-		var image_window = IMAGE_WINDOW.instantiate()
-		image_window.first_texture = BACON_EGGS
-		image_window.first_label = "uneaten bacon and eggs"
-		image_window.first_shader_params = [5, 2.0, 5.0, 1.0, 0.005]
-		override_font_color(image_window, Color.BLACK)
-		add_child(image_window)
-		image_window.add_texture_and_label(TERMINAL, "computer terminal with no power", [5, 2.0, 1.6, 1.0, 0.005])
-	solves += 1
+func start_puzzle(puzzle_number: int) -> void:
+	match puzzle_number:
+		1:
+			var decipher_window = DECIPHER_WINDOW.instantiate()
+			decipher_window.num_letters = 3
+			override_font_color(decipher_window, Color.BLACK)
+			add_child(decipher_window)
+			decipher_window.check_pressed.connect(_on_decipher_window_check_pressed)
+			
+			var puzzle_window = PUZZLE_WINDOW.instantiate()
+			puzzle_window.passcode = ["bach", "back", "scab", "carb", "crab"].pick_random()
+			override_font_color(puzzle_window, Color.BLACK)
+			add_child(puzzle_window)
+			puzzle_window.correct.connect(_on_correct_solve)
+			
+			var image_window = IMAGE_WINDOW.instantiate()
+			image_window.first_texture = POSTIT
+			image_window.first_label = "the code is %s" % puzzle_window.passcode
+			image_window.first_shader_params = [5, 2.0, 1.6, 1.0, 0.005]
+			override_font_color(image_window, Color.BLACK)
+			add_child(image_window)
+			image_window.add_texture_and_label(SCUBA_PHOTO_2, "scuba diving at garuga beach", [5, 2.8, 0.3, 1.0, 0.008])
+		2:
+			var old_decipher: Window = get_node("DecipherWindow")
+			var old_decipher_pos = old_decipher.position
+			old_decipher.queue_free()
+			var decipher_window = DECIPHER_WINDOW.instantiate()
+			decipher_window.position = old_decipher_pos
+			decipher_window.num_letters = 5
+			override_font_color(decipher_window, Color.BLACK)
+			add_child(decipher_window)
+			decipher_window.check_pressed.connect(_on_decipher_window_check_pressed)
+			
+			var old_puzzle: Window = get_node("PuzzleWindow")
+			var old_puzzle_pos = old_puzzle.position
+			old_puzzle.queue_free()
+			var puzzle_window = PUZZLE_WINDOW.instantiate()
+			puzzle_window.position = old_puzzle_pos
+			puzzle_window.passcode = ["dance", "cadet", "cedar", "raced", "decay"].pick_random()
+			override_font_color(puzzle_window, Color.BLACK)
+			add_child(puzzle_window)
+			puzzle_window.correct.connect(_on_correct_solve)
+			
+			var old_image: Window = get_node("ImageWindow")
+			var old_image_pos = old_image.position
+			old_image.queue_free()
+			var image_window = IMAGE_WINDOW.instantiate()
+			image_window.position = old_image_pos
+			image_window.first_texture = BACON_EGGS
+			image_window.first_label = "uneaten bacon and eggs"
+			image_window.first_shader_params = [5, 2.0, 5.0, 1.0, 0.005]
+			override_font_color(image_window, Color.BLACK)
+			add_child(image_window)
+			image_window.add_texture_and_label(TERMINAL, "computer terminal with no power", [5, 2.0, 1.6, 1.0, 0.005])
+		3:
+			var old_decipher: Window = get_node("DecipherWindow")
+			var old_decipher_pos: Vector2
+			if old_decipher:
+				old_decipher_pos = old_decipher.position
+				old_decipher.queue_free()
+			var decipher_window = DECIPHER_WINDOW.instantiate()
+			if old_decipher: decipher_window.position = old_decipher_pos
+			decipher_window.num_letters = 13
+			override_font_color(decipher_window, Color.BLACK)
+			add_child(decipher_window)
+			decipher_window.check_pressed.connect(_on_decipher_window_check_pressed)
+			
+			var old_puzzle: Window = get_node("PuzzleWindow")
+			var old_puzzle_pos: Vector2
+			if old_puzzle:
+				old_puzzle_pos = old_puzzle.position
+				old_puzzle.queue_free()
+			var puzzle_window = PUZZLE_WINDOW.instantiate()
+			if old_puzzle: puzzle_window.position = old_puzzle_pos
+			puzzle_window.passcode = ["wharf", "faith", "flash", "bride", "build", "famed", "faked"].pick_random()
+			override_font_color(puzzle_window, Color.BLACK)
+			add_child(puzzle_window)
+			puzzle_window.correct.connect(_on_correct_solve)
+			
+			var old_image: Window = get_node("ImageWindow")
+			var old_image_pos: Vector2
+			if old_image: 
+				old_image_pos = old_image.position
+				old_image.queue_free()
+			var image_window = IMAGE_WINDOW.instantiate()
+			if old_image: image_window.position = old_image_pos
+			image_window.first_texture = SPIKE_FIELD
+			image_window.first_label = "this place is not a place\nof honor"
+			image_window.first_shader_params = [5, 2.0, 0.5, 1.0, 0.01]
+			override_font_color(image_window, Color.BLACK)
+			add_child(image_window)
+			image_window.add_texture_and_label(MOUNTAIN, "uragaan mountain range", [5, 2.0, 1.6, 1.0, 0.005])
+			image_window.add_texture_and_label(MOUNTAIN_FROG, "mountain frog", [5, 2.0, 1.6, 1.0, 0.005])
+			image_window.add_texture_and_label(CAVE, "cave entrance", [6, 3.8, 1.3, 1.0, 0.005])
+			image_window.add_texture_and_label(BLAST_DOORS_CLOSED, "a great locked blast door", [5, 2, 1.6, 1.0, 0.003])
+			
+		4:
+			var old_decipher: Window = get_node("DecipherWindow")
+			var old_decipher_pos: Vector2
+			if old_decipher:
+				old_decipher_pos = old_decipher.position
+				old_decipher.queue_free()
+			var decipher_window = DECIPHER_WINDOW.instantiate()
+			if old_decipher: decipher_window.position = old_decipher_pos
+			decipher_window.num_letters = 26
+			override_font_color(decipher_window, Color.BLACK)
+			add_child(decipher_window)
+			decipher_window.check_pressed.connect(_on_decipher_window_check_pressed)
+			
+			var old_puzzle: Window = get_node("PuzzleWindow")
+			var old_puzzle_pos: Vector2
+			if old_puzzle:
+				old_puzzle_pos = old_puzzle.position
+				old_puzzle.queue_free()
+			var puzzle_window = PUZZLE_WINDOW.instantiate()
+			if old_puzzle: puzzle_window.position = old_puzzle_pos
+			puzzle_window.passcode = ["wharf", "faith", "flash", "bride", "build", "famed", "faked"].pick_random()
+			override_font_color(puzzle_window, Color.BLACK)
+			add_child(puzzle_window)
+			puzzle_window.correct.connect(_on_correct_solve)
+			
+			var old_image: Window = get_node("ImageWindow")
+			var old_image_pos: Vector2
+			if old_image: 
+				old_image_pos = old_image.position
+				old_image.queue_free()
+			var image_window = IMAGE_WINDOW.instantiate()
+			if old_image: image_window.position = old_image_pos
+			image_window.first_texture = SPIKE_FIELD
+			image_window.first_label = "this place is not a place\nof honor"
+			image_window.first_shader_params = [5, 2.0, 0.5, 1.0, 0.01]
+			override_font_color(image_window, Color.BLACK)
+			add_child(image_window)
+			#image_window.add_texture_and_label(MOUNTAIN, "uragaan mountain range", [5, 2.0, 1.6, 1.0, 0.005])
+			#image_window.add_texture_and_label(MOUNTAIN_FROG, "mountain frog", [5, 2.0, 1.6, 1.0, 0.005])
+			#image_window.add_texture_and_label(CAVE, "cave entrance", [6, 3.8, 1.3, 1.0, 0.005])
+			#image_window.add_texture_and_label(BLAST_DOORS_CLOSED, "a great locked blast door", [5, 2, 1.6, 1.0, 0.003])
