@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="not_a_place_of_honor"
-run/main_scene="res://main.tscn"
+run/main_scene="res://title.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 boot_splash/image="res://assets/pride-dark-c-side.png"
 config/icon="res://icon.svg"
