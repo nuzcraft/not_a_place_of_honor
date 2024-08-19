@@ -1,0 +1,10 @@
+[shake]BOOM![/shake]
+[shake]z-z-zap![/shake]
+morgan: Ugh, rough landing must've fried my translation filter.
+morgan: I should be able to recalibrate at the main terminal.
+beep-beep-beep-beep
+BRAAP!
+morgan: Crud, I can't remember the door code. I know there's a note around here somewhere...
+[signal arg="note"]
+morgan: Double Crud. I can't read it. Gotta find some clues...
+[signal arg="scuba"]

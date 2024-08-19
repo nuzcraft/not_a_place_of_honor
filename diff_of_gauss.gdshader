@@ -21,9 +21,9 @@ float gaussian(float sigma, float pos) {
 }
 
 void fragment() {
-	
+
 	//COLOR = texture(SCREEN_TEXTURE, SCREEN_UV);
-	
+
 	vec2 blur = vec2(0.0);
 	vec2 kernalSum = vec2(0.0);
 	for (int x=-_kernel; x<=_kernel; x++){
@@ -34,7 +34,7 @@ void fragment() {
 	}
 
 	//COLOR.rg = blur / kernalSum;
-	
+
 	vec2 blur2 = vec2(0.0);
 	vec2 kernalSum2 = vec2(0.0);
 	for (int y=-_kernel; y<=_kernel; y++){
@@ -45,10 +45,10 @@ void fragment() {
 	}
 	blur /= kernalSum;
 	//COLOR.rg = blur;
-	
+
 	float diff = blur.r - _tau * blur.g;
 	//COLOR.rgb = vec3(diff);
-	
+
 	if (_thresholding){
 		if (diff >= _threshold){
 		diff = 1.0;
@@ -56,4 +56,3 @@ void fragment() {
 	}
 	COLOR.rgb = vec3(diff);
 }
-
