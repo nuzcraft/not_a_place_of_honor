@@ -30,6 +30,10 @@ const FF_7 = preload("res://assets/ff7.webp")
 
 var puzzle_number: int = 1
 
+var puzzle_window: Window
+var image_window: Window
+var adventure_window: Window
+
 func _ready() -> void:
 	# change the label fonts to black
 	override_font_color(self, Color.BLACK)
@@ -46,6 +50,7 @@ func _on_correct_solve(pw: String) -> void:
 		$Popup/VBoxContainer/Button.text = "continue"
 	else:
 		$Popup/VBoxContainer/Label.text = "you won!"
+		$Popup/VBoxContainer/Label2.text = "and stole a mech"
 		$Popup/VBoxContainer/Button.text = "restart"
 	
 
@@ -86,18 +91,16 @@ func start_puzzle(puzzle_number: int) -> void:
 			add_child(decipher_window)
 			decipher_window.check_pressed.connect(_on_decipher_window_check_pressed)
 			
-			var puzzle_window = PUZZLE_WINDOW.instantiate()
+			puzzle_window = PUZZLE_WINDOW.instantiate()
 			puzzle_window.passcode = ["bach", "back", "scab", "carb", "crab"].pick_random()
 			override_font_color(puzzle_window, Color.BLACK)
 			add_child(puzzle_window)
 			puzzle_window.correct.connect(_on_correct_solve)
 			
-			var image_window = IMAGE_WINDOW.instantiate()
-			image_window.first_texture = POSTIT
-			image_window.first_label = "the code is %s" % puzzle_window.passcode
-			image_window.first_shader_params = [5, 2.0, 1.6, 1.0, 0.005]
+			image_window = IMAGE_WINDOW.instantiate()
 			override_font_color(image_window, Color.BLACK)
 			add_child(image_window)
+			image_window.add_texture_and_label(POSTIT, "the code is %s" % puzzle_window.passcode, [5, 2.0, 1.6, 1.0, 0.005])
 			image_window.add_texture_and_label(SCUBA_PHOTO_2, "scuba diving at garuga beach", [5, 2.8, 0.3, 1.0, 0.008])
 			
 		2:
@@ -111,33 +114,17 @@ func start_puzzle(puzzle_number: int) -> void:
 			add_child(decipher_window)
 			decipher_window.check_pressed.connect(_on_decipher_window_check_pressed)
 			
-			var old_puzzle: Window = get_node("PuzzleWindow")
-			var old_puzzle_pos = old_puzzle.position
-			old_puzzle.queue_free()
-			var puzzle_window = PUZZLE_WINDOW.instantiate()
-			puzzle_window.position = old_puzzle_pos
-			puzzle_window.passcode = ["dance", "cadet", "cedar", "raced", "decay"].pick_random()
-			override_font_color(puzzle_window, Color.BLACK)
-			add_child(puzzle_window)
-			puzzle_window.correct.connect(_on_correct_solve)
+			puzzle_window.set_passcode(["dance", "cadet", "cedar", "raced", "decay"].pick_random())
+			puzzle_window.hide()
 			
-			var old_image: Window = get_node("ImageWindow")
-			if old_image: old_image.hide()
-			#var old_image_pos = old_image.position
-			#old_image.queue_free()
-			#var image_window = IMAGE_WINDOW.instantiate()
-			#image_window.position = old_image_pos
-			#image_window.first_texture = BACON_EGGS
-			#image_window.first_label = "uneaten bacon and eggs"
-			#image_window.first_shader_params = [5, 2.0, 5.0, 1.0, 0.005]
-			#override_font_color(image_window, Color.BLACK)
-			#add_child(image_window)
-			#image_window.add_texture_and_label(TERMINAL, "computer terminal with no power", [5, 2.0, 1.6, 1.0, 0.005])
+			image_window.hide()
+			image_window.clear()
 			
-			var adventure_window = ADVENTURE_WINDOW.instantiate()
+			adventure_window = ADVENTURE_WINDOW.instantiate()
 			add_child(adventure_window)
 			adventure_window.set_active_layer(puzzle_number)
 			adventure_window.important_tile_found.connect(_on_important_tile_found)
+			adventure_window.moved.connect(_on_moved)
 		3:
 			var old_decipher: Window = get_node("DecipherWindow")
 			var old_decipher_pos: Vector2
@@ -151,34 +138,13 @@ func start_puzzle(puzzle_number: int) -> void:
 			add_child(decipher_window)
 			decipher_window.check_pressed.connect(_on_decipher_window_check_pressed)
 			
-			var old_puzzle: Window = get_node("PuzzleWindow")
-			var old_puzzle_pos: Vector2
-			if old_puzzle:
-				old_puzzle_pos = old_puzzle.position
-				old_puzzle.queue_free()
-			var puzzle_window = PUZZLE_WINDOW.instantiate()
-			if old_puzzle: puzzle_window.position = old_puzzle_pos
-			puzzle_window.passcode = ["wharf", "faith", "flash", "bride", "build", "famed", "faked"].pick_random()
-			override_font_color(puzzle_window, Color.BLACK)
-			add_child(puzzle_window)
-			puzzle_window.correct.connect(_on_correct_solve)
+			puzzle_window.set_passcode(["wharf", "faith", "flash", "bride", "build", "famed", "faked"].pick_random())
+			puzzle_window.hide()
 			
-			var old_image: Window = get_node("ImageWindow")
-			var old_image_pos: Vector2
-			if old_image: 
-				old_image_pos = old_image.position
-				old_image.queue_free()
-			var image_window = IMAGE_WINDOW.instantiate()
-			if old_image: image_window.position = old_image_pos
-			image_window.first_texture = SPIKE_FIELD
-			image_window.first_label = "this place is not a place\nof honor"
-			image_window.first_shader_params = [5, 2.0, 0.5, 1.0, 0.01]
-			override_font_color(image_window, Color.BLACK)
-			add_child(image_window)
-			image_window.add_texture_and_label(MOUNTAIN, "uragaan mountain range", [5, 2.0, 1.6, 1.0, 0.005])
-			image_window.add_texture_and_label(MOUNTAIN_FROG, "mountain frog", [5, 2.0, 1.6, 1.0, 0.005])
-			image_window.add_texture_and_label(CAVE, "cave entrance", [6, 3.8, 1.3, 1.0, 0.005])
-			image_window.add_texture_and_label(BLAST_DOORS_CLOSED, "a great locked blast door", [5, 2, 1.6, 1.0, 0.003])
+			image_window.hide()
+			image_window.clear()
+			
+			adventure_window.set_active_layer(puzzle_number)
 			
 		4:
 			var old_decipher: Window = get_node("DecipherWindow")
@@ -193,57 +159,79 @@ func start_puzzle(puzzle_number: int) -> void:
 			add_child(decipher_window)
 			decipher_window.check_pressed.connect(_on_decipher_window_check_pressed)
 			
-			var old_puzzle: Window = get_node("PuzzleWindow")
-			var old_puzzle_pos: Vector2
-			if old_puzzle:
-				old_puzzle_pos = old_puzzle.position
-				old_puzzle.queue_free()
-			var puzzle_window = PUZZLE_WINDOW.instantiate()
-			if old_puzzle: puzzle_window.position = old_puzzle_pos
-			puzzle_window.passcode = ["babes", "cabin", "eagle", "facet", "hacks", "macaw", "nacho", "oaken", "rabid", "sable", "udder", "wacky", "xenon", "yacht"].pick_random()
-			override_font_color(puzzle_window, Color.BLACK)
-			add_child(puzzle_window)
-			puzzle_window.correct.connect(_on_correct_solve)
+			puzzle_window.set_passcode(["babes", "cabin", "eagle", "facet", "hacks", "macaw", "nacho", "oaken", "rabid", "sable", "udder", "wacky", "xenon", "yacht"].pick_random())
+			puzzle_window.hide()
 			
-			var old_image: Window = get_node("ImageWindow")
-			var old_image_pos: Vector2
-			if old_image: 
-				old_image_pos = old_image.position
-				old_image.queue_free()
-			var image_window = IMAGE_WINDOW.instantiate()
-			if old_image: image_window.position = old_image_pos
-			image_window.first_texture = DOUBLEBLASTDOORS
-			image_window.first_label = "a great unlocked blast door"
-			image_window.first_shader_params = [5, 2.0, 1.6, 1.0, 0.005]
-			override_font_color(image_window, Color.BLACK)
-			add_child(image_window)
-			image_window.add_texture_and_label(NO_SMOKING, "no smoking", [5, 2.0, 1.6, 1.0, 0.005])
-			image_window.add_texture_and_label(RADIOACTIVE, "caution radioactive", [5, 2.0, 1.6, 1.0, 0.005])
-			image_window.add_texture_and_label(RADIOACTIVE_BARREL, "barrels of radioactive waste", [5, 2.0, 1.6, 1.0, 0.005])
-			image_window.add_texture_and_label(HL_2_CHAMBER, "unconscionable experiments\nwere performed here", [5, 2, 1.6, 1.0, 0.005])
-			image_window.add_texture_and_label(AMORED_CORE, "a great mech suit in a hangar", [5, 0.6, 3.5, 1.0, 0.003])
-			image_window.add_texture_and_label(ARMORED_CORE_2, "a terrifying mech suit tank", [5, 2, 1.6, 1.0, 0.005])
-			image_window.add_texture_and_label(FF_7, "theres a whole dang city\ndown here", [5, 0.7, 2.5, 1.0, 0.005])
-
-func _on_important_tile_found(type: String):
-	var old_image: Window = get_node("ImageWindow")
-	var image_window: Window
-	if old_image:
-		print("found old image")
-		if not old_image.visible:
-			var old_image_pos = old_image.position
-			old_image.queue_free()
-			image_window = IMAGE_WINDOW.instantiate()
-			image_window.position = old_image_pos
-			override_font_color(image_window, Color.BLACK)
-			add_child(image_window)
-		
+			image_window.hide()
+			image_window.clear()
+			
+			adventure_window.set_active_layer(puzzle_number)
+			
+func _on_important_tile_found(type: String):	
 	match type:
 		"breakfast":
-			var image: Window = get_node("ImageWindow")
-			image.add_texture_and_label(BACON_EGGS, "uneaten bacon and eggs", [5, 2.0, 5.0, 1.0, 0.005])
-			image.grab_focus()
+			image_window.show()
+			var new = image_window.add_texture_and_label(BACON_EGGS, "uneaten bacon and eggs", [5, 2.0, 5.0, 1.0, 0.005])
+			if new: image_window.grab_focus()
 		"terminal":
-			var image: Window = get_node("ImageWindow")
-			image.add_texture_and_label(TERMINAL, "computer terminal with no power", [5, 2.0, 1.6, 1.0, 0.005])
-			image.grab_focus()
+			image_window.show()
+			var new = image_window.add_texture_and_label(TERMINAL, "computer terminal with no power", [5, 2.0, 1.6, 1.0, 0.005])
+			if new: image_window.grab_focus()
+		"exit":
+			puzzle_window.show()
+			adventure_window.grab_focus()
+		"spike":
+			image_window.show()
+			var new = image_window.add_texture_and_label(SPIKE_FIELD, "this place is not a place\nof honor", [5, 2.0, 0.5, 1.0, 0.01])
+			if new: image_window.grab_focus()
+		"mountain":
+			image_window.show()
+			var new = image_window.add_texture_and_label(MOUNTAIN, "uragaan mountain range", [5, 2.0, 1.6, 1.0, 0.005])
+			if new: image_window.grab_focus()
+		"frog":
+			image_window.show()
+			var new = image_window.add_texture_and_label(MOUNTAIN_FROG, "mountain frog", [5, 2.0, 1.6, 1.0, 0.005])
+			if new: image_window.grab_focus()
+		"cave":
+			image_window.show()
+			var new = image_window.add_texture_and_label(CAVE, "cave entrance", [6, 3.8, 1.3, 1.0, 0.005])
+			if new: image_window.grab_focus()
+		"door":
+			image_window.show()
+			var new = image_window.add_texture_and_label(BLAST_DOORS_CLOSED, "a great locked blast door", [5, 2, 1.6, 1.0, 0.003])
+			if new: image_window.grab_focus()
+		"door2":
+			image_window.show()
+			var new = image_window.add_texture_and_label(DOUBLEBLASTDOORS, "a great unlocked blast door", [5, 2.0, 1.6, 1.0, 0.005])
+			if new: image_window.grab_focus()
+		"no smoking":
+			image_window.show()
+			var new = image_window.add_texture_and_label(NO_SMOKING, "no smoking", [5, 2.0, 1.6, 1.0, 0.005])
+			if new: image_window.grab_focus()
+		"radioactive sign":
+			image_window.show()
+			var new = image_window.add_texture_and_label(RADIOACTIVE, "caution radioactive", [5, 2.0, 1.6, 1.0, 0.005])
+			if new: image_window.grab_focus()
+		"radioactive barrel":
+			image_window.show()
+			var new = image_window.add_texture_and_label(RADIOACTIVE_BARREL, "barrels of radioactive waste", [5, 2.0, 1.6, 1.0, 0.005])
+			if new: image_window.grab_focus()
+		"chamber":
+			image_window.show()
+			var new = image_window.add_texture_and_label(HL_2_CHAMBER, "unconscionable experiments\nwere performed here", [5, 2, 1.6, 1.0, 0.005])
+			if new: image_window.grab_focus()
+		"city":
+			image_window.show()
+			var new = image_window.add_texture_and_label(FF_7, "theres a whole dang city\ndown here", [5, 0.7, 2.5, 1.0, 0.005])
+			if new: image_window.grab_focus()
+		"mech":
+			image_window.show()
+			var new = image_window.add_texture_and_label(AMORED_CORE, "a great mech suit in a hangar", [5, 0.6, 3.5, 1.0, 0.003])
+			if new: image_window.grab_focus()
+		"mech 2":
+			image_window.show()
+			var new = image_window.add_texture_and_label(ARMORED_CORE_2, "a terrifying mech suit tank", [5, 2, 1.6, 1.0, 0.005])
+			if new: image_window.grab_focus()
+			
+func _on_moved():
+	puzzle_window.hide()

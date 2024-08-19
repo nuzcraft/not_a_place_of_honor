@@ -53,7 +53,7 @@ func _ready() -> void:
 		glyph_array.append(array.pop_at(array.find(glyph)))
 		var replacing = replaceable_array.pick_random()
 		replacing_array.append(replaceable_array.pop_at(replaceable_array.find(replacing)))
-		print("%d: %s is replacing %s (%s)" % [i, glyph, replacing, char(replacing)])
+		#print("%d: %s is replacing %s (%s)" % [i, glyph, replacing, char(replacing)])
 		var glyph_rect: Rect2 = font_clear.get_glyph_uv_rect(0, Vector2i(20, 0), glyph)
 		font_sub.set_glyph_uv_rect(0, Vector2i(20, 0), replacing, glyph_rect)
 		font_sub_un.set_glyph_uv_rect(0, Vector2i(20, 0), replacing, glyph_rect)
