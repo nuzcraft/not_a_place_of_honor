@@ -54,6 +54,6 @@ void fragment() {
 		diff = 1.0;
 		}
 	}
-	COLOR.rgb = vec3(1.0 - diff);
+	COLOR.rgb = vec3(diff);
 }
 
