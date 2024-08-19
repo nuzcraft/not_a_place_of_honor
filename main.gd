@@ -37,11 +37,19 @@ var adventure_window: Window
 func _ready() -> void:
 	# change the label fonts to black
 	override_font_color(self, Color.BLACK)
-	
-	start_puzzle(puzzle_number)
+	Dialogic.signal_event.connect(_on_dialogic_signal)
+	#start_puzzle(puzzle_number)
+	Dialogic.start("intro_timeline")
 
 func _process(delta: float) -> void:
 	pass
+	
+func _on_dialogic_signal(st: String) -> void:
+	match st:
+		"note":
+			start_puzzle(puzzle_number)
+		"scuba":
+			image_window.add_texture_and_label(SCUBA_PHOTO_2, "scuba diving at garuga beach", [5, 2.8, 0.3, 1.0, 0.008])
 	
 func _on_correct_solve(pw: String) -> void:
 	$Popup.show()
@@ -101,7 +109,7 @@ func start_puzzle(puzzle_number: int) -> void:
 			override_font_color(image_window, Color.BLACK)
 			add_child(image_window)
 			image_window.add_texture_and_label(POSTIT, "the code is %s" % puzzle_window.passcode, [5, 2.0, 1.6, 1.0, 0.005])
-			image_window.add_texture_and_label(SCUBA_PHOTO_2, "scuba diving at garuga beach", [5, 2.8, 0.3, 1.0, 0.008])
+			#image_window.add_texture_and_label(SCUBA_PHOTO_2, "scuba diving at garuga beach", [5, 2.8, 0.3, 1.0, 0.008])
 			
 		2:
 			var old_decipher: Window = get_node("DecipherWindow")
@@ -172,11 +180,16 @@ func _on_important_tile_found(type: String):
 		"breakfast":
 			image_window.show()
 			var new = image_window.add_texture_and_label(BACON_EGGS, "uneaten bacon and eggs", [5, 2.0, 5.0, 1.0, 0.005])
-			if new: image_window.grab_focus()
+			if new: 
+				image_window.grab_focus()
+				Dialogic.start("bfast_timeline")
+			
 		"terminal":
 			image_window.show()
 			var new = image_window.add_texture_and_label(TERMINAL, "computer terminal with no power", [5, 2.0, 1.6, 1.0, 0.005])
-			if new: image_window.grab_focus()
+			if new: 
+				image_window.grab_focus()
+				Dialogic.start("terminal_timeline")
 		"exit":
 			puzzle_window.show()
 			adventure_window.grab_focus()

@@ -80,5 +80,14 @@ images
 - radioactive sign
 - radioactive barrel
 - armored core
+  5, 0.6, 3.5, 1.0, 0.003
 - armored core 2
 - hl2 chamber
+- ff7
+  5, 0.7, 2.5, 1.0, 0.005
+
+# Credits
+
+- nuzcraft - programming and design
+- kenney - boot splash image
+- Emilio Coppola and Jowan Spooner - Dialogic
