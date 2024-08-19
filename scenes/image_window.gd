@@ -14,10 +14,11 @@ var params = []
 var current = 0
 
 func _ready() -> void:
-	add_texture_and_label(first_texture, first_label, first_shader_params)
-	image.texture = textures[0]
-	label.text = label_text[0]
-	set_shader_params(params[0])
+	#add_texture_and_label(first_texture, first_label, first_shader_params)
+	#image.texture = textures[0]
+	#label.text = label_text[0]
+	#set_shader_params(params[0])
+	pass
 	
 
 func add_texture_and_label(img: CompressedTexture2D, text: String, parameters: Array):

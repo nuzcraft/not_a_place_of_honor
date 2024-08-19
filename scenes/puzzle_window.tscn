@@ -7,7 +7,7 @@
 
 [node name="PuzzleWindow" type="Window"]
 title = "?????"
-position = Vector2i(60, 320)
+position = Vector2i(85, 495)
 size = Vector2i(268, 143)
 theme = ExtResource("1_usxaq")
 script = ExtResource("2_hhxe8")

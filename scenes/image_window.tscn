@@ -4,17 +4,17 @@
 [ext_resource type="Script" path="res://scenes/image_window.gd" id="2_3qq4w"]
 [ext_resource type="Shader" path="res://diff_of_gauss.gdshader" id="2_tva8f"]
 [ext_resource type="Theme" uid="uid://qq8er6lr5dhi" path="res://unscramble_theme.tres" id="3_jawt2"]
-[ext_resource type="Texture2D" uid="uid://2wrp2xp7dimv" path="res://assets/blast doors closed.jpg" id="4_3g641"]
+[ext_resource type="Texture2D" uid="uid://du5rp5tugxwn6" path="res://assets/ff7.webp" id="4_4r8ui"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3ymuq"]
 shader = ExtResource("2_tva8f")
 shader_parameter/_kernel = 5
-shader_parameter/_sigma = 2.0
-shader_parameter/_k = 1.6
+shader_parameter/_sigma = 0.7
+shader_parameter/_k = 2.5
 shader_parameter/_k2 = 1.6
 shader_parameter/_tau = 1.0
 shader_parameter/_thresholding = true
-shader_parameter/_threshold = 0.003
+shader_parameter/_threshold = 0.005
 
 [node name="ImageWindow" type="Window"]
 title = "Images"
@@ -52,14 +52,14 @@ alignment = 1
 material = SubResource("ShaderMaterial_3ymuq")
 clip_contents = true
 layout_mode = 2
-texture = ExtResource("4_3g641")
+texture = ExtResource("4_4r8ui")
 expand_mode = 5
 
 [node name="Label" type="Label" parent="Control/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_jawt2")
-text = "this place is not a place
-of honor"
+text = "theres a whole dang
+city down here"
 horizontal_alignment = 1
 
 [node name="NextButton" type="Button" parent="Control"]

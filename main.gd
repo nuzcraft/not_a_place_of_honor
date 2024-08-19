@@ -4,6 +4,7 @@ const font_clear = preload("res://assets/cp437_20x20_2.png")
 const font_sub = preload("res://assets/cp437_20x20_3.png")
 const font_sub_un = preload("res://assets/cp437_20x20_4.png")
 const UNSCRAMBLE_THEME = preload("res://unscramble_theme.tres")
+const ADVENTURE_WINDOW = preload("res://scenes/adventure_window.tscn")
 
 const DECIPHER_WINDOW = preload("res://scenes/decipher_window.tscn")
 const PUZZLE_WINDOW = preload("res://scenes/puzzle_window.tscn")
@@ -18,8 +19,16 @@ const MOUNTAIN = preload("res://assets/mountain.webp")
 const MOUNTAIN_FROG = preload("res://assets/mountain frog.JPG")
 const CAVE = preload("res://assets/cave.jpg")
 const BLAST_DOORS_CLOSED = preload("res://assets/blast doors closed.jpg")
+const DOUBLEBLASTDOORS = preload("res://assets/Doubleblastdoors.webp")
+const NO_SMOKING = preload("res://assets/no smoking.jpg")
+const RADIOACTIVE = preload("res://assets/radioactive.jpg")
+const RADIOACTIVE_BARREL = preload("res://assets/radioactive_barrel.jpg")
+const AMORED_CORE = preload("res://assets/amored_core.webp")
+const ARMORED_CORE_2 = preload("res://assets/armored core 2.webp")
+const HL_2_CHAMBER = preload("res://assets/hl2chamber.jpg")
+const FF_7 = preload("res://assets/ff7.webp")
 
-var puzzle_number: int = 4
+var puzzle_number: int = 1
 
 func _ready() -> void:
 	# change the label fonts to black
@@ -36,6 +45,7 @@ func _on_correct_solve(pw: String) -> void:
 	if puzzle_number < 4:
 		$Popup/VBoxContainer/Button.text = "continue"
 	else:
+		$Popup/VBoxContainer/Label.text = "you won!"
 		$Popup/VBoxContainer/Button.text = "restart"
 	
 
@@ -89,6 +99,7 @@ func start_puzzle(puzzle_number: int) -> void:
 			override_font_color(image_window, Color.BLACK)
 			add_child(image_window)
 			image_window.add_texture_and_label(SCUBA_PHOTO_2, "scuba diving at garuga beach", [5, 2.8, 0.3, 1.0, 0.008])
+			
 		2:
 			var old_decipher: Window = get_node("DecipherWindow")
 			var old_decipher_pos = old_decipher.position
@@ -111,16 +122,22 @@ func start_puzzle(puzzle_number: int) -> void:
 			puzzle_window.correct.connect(_on_correct_solve)
 			
 			var old_image: Window = get_node("ImageWindow")
-			var old_image_pos = old_image.position
-			old_image.queue_free()
-			var image_window = IMAGE_WINDOW.instantiate()
-			image_window.position = old_image_pos
-			image_window.first_texture = BACON_EGGS
-			image_window.first_label = "uneaten bacon and eggs"
-			image_window.first_shader_params = [5, 2.0, 5.0, 1.0, 0.005]
-			override_font_color(image_window, Color.BLACK)
-			add_child(image_window)
-			image_window.add_texture_and_label(TERMINAL, "computer terminal with no power", [5, 2.0, 1.6, 1.0, 0.005])
+			if old_image: old_image.hide()
+			#var old_image_pos = old_image.position
+			#old_image.queue_free()
+			#var image_window = IMAGE_WINDOW.instantiate()
+			#image_window.position = old_image_pos
+			#image_window.first_texture = BACON_EGGS
+			#image_window.first_label = "uneaten bacon and eggs"
+			#image_window.first_shader_params = [5, 2.0, 5.0, 1.0, 0.005]
+			#override_font_color(image_window, Color.BLACK)
+			#add_child(image_window)
+			#image_window.add_texture_and_label(TERMINAL, "computer terminal with no power", [5, 2.0, 1.6, 1.0, 0.005])
+			
+			var adventure_window = ADVENTURE_WINDOW.instantiate()
+			add_child(adventure_window)
+			adventure_window.set_active_layer(puzzle_number)
+			adventure_window.important_tile_found.connect(_on_important_tile_found)
 		3:
 			var old_decipher: Window = get_node("DecipherWindow")
 			var old_decipher_pos: Vector2
@@ -195,12 +212,38 @@ func start_puzzle(puzzle_number: int) -> void:
 				old_image.queue_free()
 			var image_window = IMAGE_WINDOW.instantiate()
 			if old_image: image_window.position = old_image_pos
-			image_window.first_texture = SPIKE_FIELD
-			image_window.first_label = "this place is not a place\nof honor"
-			image_window.first_shader_params = [5, 2.0, 0.5, 1.0, 0.01]
+			image_window.first_texture = DOUBLEBLASTDOORS
+			image_window.first_label = "a great unlocked blast door"
+			image_window.first_shader_params = [5, 2.0, 1.6, 1.0, 0.005]
 			override_font_color(image_window, Color.BLACK)
 			add_child(image_window)
-			#image_window.add_texture_and_label(MOUNTAIN, "uragaan mountain range", [5, 2.0, 1.6, 1.0, 0.005])
-			#image_window.add_texture_and_label(MOUNTAIN_FROG, "mountain frog", [5, 2.0, 1.6, 1.0, 0.005])
-			#image_window.add_texture_and_label(CAVE, "cave entrance", [6, 3.8, 1.3, 1.0, 0.005])
-			#image_window.add_texture_and_label(BLAST_DOORS_CLOSED, "a great locked blast door", [5, 2, 1.6, 1.0, 0.003])
+			image_window.add_texture_and_label(NO_SMOKING, "no smoking", [5, 2.0, 1.6, 1.0, 0.005])
+			image_window.add_texture_and_label(RADIOACTIVE, "caution radioactive", [5, 2.0, 1.6, 1.0, 0.005])
+			image_window.add_texture_and_label(RADIOACTIVE_BARREL, "barrels of radioactive waste", [5, 2.0, 1.6, 1.0, 0.005])
+			image_window.add_texture_and_label(HL_2_CHAMBER, "unconscionable experiments\nwere performed here", [5, 2, 1.6, 1.0, 0.005])
+			image_window.add_texture_and_label(AMORED_CORE, "a great mech suit in a hangar", [5, 0.6, 3.5, 1.0, 0.003])
+			image_window.add_texture_and_label(ARMORED_CORE_2, "a terrifying mech suit tank", [5, 2, 1.6, 1.0, 0.005])
+			image_window.add_texture_and_label(FF_7, "theres a whole dang city\ndown here", [5, 0.7, 2.5, 1.0, 0.005])
+
+func _on_important_tile_found(type: String):
+	var old_image: Window = get_node("ImageWindow")
+	var image_window: Window
+	if old_image:
+		print("found old image")
+		if not old_image.visible:
+			var old_image_pos = old_image.position
+			old_image.queue_free()
+			image_window = IMAGE_WINDOW.instantiate()
+			image_window.position = old_image_pos
+			override_font_color(image_window, Color.BLACK)
+			add_child(image_window)
+		
+	match type:
+		"breakfast":
+			var image: Window = get_node("ImageWindow")
+			image.add_texture_and_label(BACON_EGGS, "uneaten bacon and eggs", [5, 2.0, 5.0, 1.0, 0.005])
+			image.grab_focus()
+		"terminal":
+			var image: Window = get_node("ImageWindow")
+			image.add_texture_and_label(TERMINAL, "computer terminal with no power", [5, 2.0, 1.6, 1.0, 0.005])
+			image.grab_focus()
