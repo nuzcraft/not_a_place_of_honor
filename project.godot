@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
+SoundPlayer="*res://scenes/sound_player.tscn"
 
 [dialogic]
 
@@ -26,8 +27,13 @@ directories/dch_directory={
 "morgan": "res://dialogic/morgan.dch"
 }
 directories/dtl_directory={
+"barrel_timeline": "res://dialogic/barrel_timeline.dtl",
 "bfast_timeline": "res://dialogic/bfast_timeline.dtl",
+"door_timeline": "res://dialogic/door_timeline.dtl",
+"frog_timeline": "res://dialogic/frog_timeline.dtl",
 "intro_timeline": "res://dialogic/intro_timeline.dtl",
+"mech_timeline": "res://dialogic/mech_timeline.dtl",
+"spike_timeline": "res://dialogic/spike_timeline.dtl",
 "terminal_timeline": "res://dialogic/terminal_timeline.dtl"
 }
 layout/style_list=["res://dialogic/dialogic_style.tres"]

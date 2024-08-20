@@ -23,10 +23,12 @@ func add_texture_and_label(img: CompressedTexture2D, text: String, parameters: A
 		image.texture = textures[current]
 		label.text = label_text[current]
 		set_shader_params(params[current])
+		SoundPlayer.play_sound(SoundPlayer.METAL_CLICK)
 		return true
 	return false
 
 func _on_next_button_pressed() -> void:
+	SoundPlayer.play_sound(SoundPlayer.CLICK_3)
 	if textures.size() > 1:
 		if current < textures.size() - 1:
 			current += 1
@@ -37,6 +39,7 @@ func _on_next_button_pressed() -> void:
 		set_shader_params(params[current])
 
 func _on_previous_button_pressed() -> void:
+	SoundPlayer.play_sound(SoundPlayer.CLICK_3)
 	if textures.size() > 1:
 		if current > 0:
 			current -= 1
@@ -58,3 +61,7 @@ func clear() -> void:
 	textures = []
 	label_text = []
 	params = []
+
+
+func _on_button_mouse_entered() -> void:
+	SoundPlayer.play_sound(SoundPlayer.ROLLOVER_1)

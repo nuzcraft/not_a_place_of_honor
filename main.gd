@@ -60,9 +60,11 @@ func _on_correct_solve(pw: String) -> void:
 		$Popup/VBoxContainer/Label.text = "you won!"
 		$Popup/VBoxContainer/Label2.text = "and stole a mech"
 		$Popup/VBoxContainer/Button.text = "restart"
+	$Popup.size.x = $Popup/VBoxContainer.size.x + 40
 	
 
 func _on_button_pressed() -> void:
+	SoundPlayer.play_sound(SoundPlayer.CLICK_3)
 	$Popup.hide()
 	if puzzle_number < 4:
 		puzzle_number += 1
@@ -192,11 +194,14 @@ func _on_important_tile_found(type: String):
 				Dialogic.start("terminal_timeline")
 		"exit":
 			puzzle_window.show()
+			SoundPlayer.play_sound(SoundPlayer.BOOK_PLACE_1)
 			adventure_window.grab_focus()
 		"spike":
 			image_window.show()
 			var new = image_window.add_texture_and_label(SPIKE_FIELD, "this place is not a place\nof honor", [5, 2.0, 0.5, 1.0, 0.01])
-			if new: image_window.grab_focus()
+			if new: 
+				image_window.grab_focus()
+				Dialogic.start("spike_timeline")
 		"mountain":
 			image_window.show()
 			var new = image_window.add_texture_and_label(MOUNTAIN, "uragaan mountain range", [5, 2.0, 1.6, 1.0, 0.005])
@@ -204,7 +209,9 @@ func _on_important_tile_found(type: String):
 		"frog":
 			image_window.show()
 			var new = image_window.add_texture_and_label(MOUNTAIN_FROG, "mountain frog", [5, 2.0, 1.6, 1.0, 0.005])
-			if new: image_window.grab_focus()
+			if new: 
+				image_window.grab_focus()
+				Dialogic.start("frog_timeline")
 		"cave":
 			image_window.show()
 			var new = image_window.add_texture_and_label(CAVE, "cave entrance", [6, 3.8, 1.3, 1.0, 0.005])
@@ -212,7 +219,9 @@ func _on_important_tile_found(type: String):
 		"door":
 			image_window.show()
 			var new = image_window.add_texture_and_label(BLAST_DOORS_CLOSED, "a great locked blast door", [5, 2, 1.6, 1.0, 0.003])
-			if new: image_window.grab_focus()
+			if new: 
+				image_window.grab_focus()
+				Dialogic.start("door_timeline")
 		"door2":
 			image_window.show()
 			var new = image_window.add_texture_and_label(DOUBLEBLASTDOORS, "a great unlocked blast door", [5, 2.0, 1.6, 1.0, 0.005])
@@ -228,7 +237,9 @@ func _on_important_tile_found(type: String):
 		"radioactive barrel":
 			image_window.show()
 			var new = image_window.add_texture_and_label(RADIOACTIVE_BARREL, "barrels of radioactive waste", [5, 2.0, 1.6, 1.0, 0.005])
-			if new: image_window.grab_focus()
+			if new: 
+				image_window.grab_focus()
+				Dialogic.start("barrel_timeline")
 		"chamber":
 			image_window.show()
 			var new = image_window.add_texture_and_label(HL_2_CHAMBER, "unconscionable experiments\nwere performed here", [5, 2, 1.6, 1.0, 0.005])
@@ -240,7 +251,9 @@ func _on_important_tile_found(type: String):
 		"mech":
 			image_window.show()
 			var new = image_window.add_texture_and_label(AMORED_CORE, "a great mech suit in a hangar", [5, 0.6, 3.5, 1.0, 0.003])
-			if new: image_window.grab_focus()
+			if new: 
+				image_window.grab_focus()
+				Dialogic.start("mech_timeline")
 		"mech 2":
 			image_window.show()
 			var new = image_window.add_texture_and_label(ARMORED_CORE_2, "a terrifying mech suit tank", [5, 2, 1.6, 1.0, 0.005])
@@ -248,3 +261,20 @@ func _on_important_tile_found(type: String):
 			
 func _on_moved():
 	puzzle_window.hide()
+
+
+func _on_button_mouse_entered() -> void:
+	SoundPlayer.play_sound(SoundPlayer.ROLLOVER_1)
+
+func _on_effects_button_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		AudioServer.set_bus_mute(AudioServer.get_bus_index("effects"), false)
+	else:
+		AudioServer.set_bus_mute(AudioServer.get_bus_index("effects"), true)
+
+
+func _on_music_button_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		AudioServer.set_bus_mute(AudioServer.get_bus_index("music"), false)
+	else:
+		AudioServer.set_bus_mute(AudioServer.get_bus_index("music"), true)

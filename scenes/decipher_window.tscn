@@ -6,7 +6,7 @@
 
 [node name="DecipherWindow" type="Window"]
 title = "Decipher"
-position = Vector2i(45, 36)
+position = Vector2i(20, 41)
 size = Vector2i(372, 432)
 unresizable = true
 keep_title_visible = true
@@ -419,4 +419,5 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "check"
 
+[connection signal="mouse_entered" from="Control/VBoxContainer/CheckButton" to="." method="_on_check_button_mouse_entered"]
 [connection signal="pressed" from="Control/VBoxContainer/CheckButton" to="." method="_on_check_button_pressed"]
