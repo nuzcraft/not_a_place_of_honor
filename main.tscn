@@ -42,21 +42,26 @@ text = "the quick brown fox jumps over the lazy dog"
 
 [node name="Popup" type="Popup" parent="."]
 initial_position = 2
-size = Vector2i(360, 100)
+size = Vector2i(400, 100)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Popup"]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 20.0
+offset_right = 380.0
+offset_bottom = 76.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 alignment = 1
 
 [node name="Label" type="Label" parent="Popup/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("4_5im7g")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="Popup/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("4_5im7g")
 text = "the word was jones"
 horizontal_alignment = 1
@@ -64,7 +69,31 @@ vertical_alignment = 1
 
 [node name="Button" type="Button" parent="Popup/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_fonts/font = ExtResource("4_5im7g")
 text = "restart"
 
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+offset_left = 830.0
+offset_top = 8.0
+offset_right = 1146.0
+offset_bottom = 60.0
+
+[node name="EffectsButton" type="CheckButton" parent="VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("3_tco2q")
+button_pressed = true
+text = "sound effects "
+
+[node name="MusicButton" type="CheckButton" parent="VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("3_tco2q")
+button_pressed = true
+text = "music"
+
+[connection signal="mouse_entered" from="Popup/VBoxContainer/Button" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="Popup/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer2/EffectsButton" to="." method="_on_effects_button_pressed"]
+[connection signal="toggled" from="VBoxContainer2/EffectsButton" to="." method="_on_effects_button_toggled"]
+[connection signal="toggled" from="VBoxContainer2/MusicButton" to="." method="_on_music_button_toggled"]

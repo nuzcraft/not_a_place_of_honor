@@ -69,4 +69,5 @@ size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("2_0g0fy")
 text = "check"
 
+[connection signal="mouse_entered" from="Control/VBoxContainer/FinalCheckButton" to="." method="_on_final_check_button_mouse_entered"]
 [connection signal="pressed" from="Control/VBoxContainer/FinalCheckButton" to="." method="_on_final_check_button_pressed"]

@@ -66,6 +66,7 @@ func move_hero(amount: Vector2i):
 		hero_layer.clear()
 		hero_pos += amount
 		hero_layer.set_cell(hero_pos, 0, Vector2i(2, 0))
+		SoundPlayer.play_sound(SoundPlayer.FOOTSTEP_06)
 		moved.emit()
 	find_important_cells(hero_pos)
 	match current_layer:

@@ -70,4 +70,9 @@ func _on_check_button_pressed() -> void:
 			lineedit_array[i].editable = false
 			var reset_rect: Rect2 = font_clear.get_glyph_uv_rect(0, Vector2i(20, 0), replacing_array[i])
 			font_sub_un.set_glyph_uv_rect(0, Vector2i(20, 0), replacing_array[i], reset_rect)
+	SoundPlayer.play_sound(SoundPlayer.CLICK_3)
 	check_pressed.emit()
+
+
+func _on_check_button_mouse_entered() -> void:
+	SoundPlayer.play_sound(SoundPlayer.ROLLOVER_1)

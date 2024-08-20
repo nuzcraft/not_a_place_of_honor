@@ -11,7 +11,9 @@ func _ready() -> void:
 	print(passcode)
 
 func _on_final_check_button_pressed() -> void:
+	SoundPlayer.play_sound(SoundPlayer.CLICK_3)
 	if final_label.text == final_line_edit.text:
+		#SoundPlayer.play_sound(SoundPlayer.JINGLES_SAX_02)
 		correct.emit(passcode)
 		
 func set_passcode(code: String) -> void:
@@ -19,3 +21,7 @@ func set_passcode(code: String) -> void:
 	final_label.text = code
 	final_line_edit.text = ""
 	print(code)
+
+
+func _on_final_check_button_mouse_entered() -> void:
+	SoundPlayer.play_sound(SoundPlayer.ROLLOVER_1)

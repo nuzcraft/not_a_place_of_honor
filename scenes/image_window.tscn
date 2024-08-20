@@ -18,7 +18,7 @@ shader_parameter/_threshold = 0.005
 
 [node name="ImageWindow" type="Window"]
 title = "Images"
-position = Vector2i(420, 42)
+position = Vector2i(295, 57)
 size = Vector2i(700, 500)
 theme = ExtResource("1_ggtrn")
 script = ExtResource("2_3qq4w")
@@ -89,5 +89,7 @@ offset_bottom = -4.0
 grow_vertical = 0
 text = "<"
 
+[connection signal="mouse_entered" from="Control/NextButton" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="Control/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="mouse_entered" from="Control/PreviousButton" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="Control/PreviousButton" to="." method="_on_previous_button_pressed"]

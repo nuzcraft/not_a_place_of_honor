@@ -1,7 +1,19 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://bv3cejaf47msf"]
+[gd_resource type="Theme" load_steps=13 format=3 uid="uid://bv3cejaf47msf"]
 
 [ext_resource type="FontFile" uid="uid://t8gejpctdf8a" path="res://assets/cp437_20x20_3.png" id="1_htf16"]
 [ext_resource type="FontFile" uid="uid://6oaa5h668nc7" path="res://assets/cp437_20x20_2.png" id="2_siehk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3tpx3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rrtyo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4rqur"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pqast"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g7m0m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tc8ii"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_hlssd"]
 thickness = 4
@@ -24,6 +36,14 @@ expand_margin_bottom = 4.0
 [resource]
 Button/colors/font_color = Color(0, 0, 0, 1)
 Button/fonts/font = ExtResource("2_siehk")
+CheckButton/colors/font_color = Color(0, 0, 0, 1)
+CheckButton/colors/font_pressed_color = Color(0, 0, 0, 1)
+CheckButton/styles/disabled = SubResource("StyleBoxFlat_3tpx3")
+CheckButton/styles/focus = SubResource("StyleBoxFlat_rrtyo")
+CheckButton/styles/hover = SubResource("StyleBoxFlat_4rqur")
+CheckButton/styles/hover_pressed = SubResource("StyleBoxFlat_pqast")
+CheckButton/styles/normal = SubResource("StyleBoxFlat_g7m0m")
+CheckButton/styles/pressed = SubResource("StyleBoxFlat_tc8ii")
 HSeparator/styles/separator = SubResource("StyleBoxLine_hlssd")
 Label/colors/font_color = Color(0.388235, 0.145098, 0.054902, 1)
 Label/fonts/font = ExtResource("1_htf16")
